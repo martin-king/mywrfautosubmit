@@ -26,7 +26,7 @@
 #
 # ##################################################################################
 
-# USAGE: $ qsub -v EXP="TEST" RUN_WRF_HEXAGON.sh
+# Is called by step3_runrealwrf_rp85.py with the inputs
 
 # Export variables
 export PATH=$PATH:/usr/local/bin:/usr/etc:~/bin:./
