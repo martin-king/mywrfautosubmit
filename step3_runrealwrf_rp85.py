@@ -29,13 +29,14 @@ for y in yearstart:
 # os.popen('mv rub.input WRF_EAS44RP85'+alphabets[count]+'/namelist.input')
 
 # if jobie from first step or from below is done, execute next line to edit namelist and copy wrfrst files
+# it is submitted as a job because we need jobia for the chained jobs.
  jobia=os.popen('qsub -W depend=afterok:'+jobie[0:7]+' -v ALPHA="'+alphabets[count]+'",YEAR="'+str(y)+ \
                 '",ALPHAM="'+alphabets[count-1]+'",YEARM="'+str(y-1)+'",YEARP4="'+str(y+4)+'"'+ \
                 ' ./RUN_PYTHON_RP85.sh').read()
- # if jobia above is completed successfully, execute next line to run real
+# if jobia above is completed successfully, execute next line to run real
  jobid=os.popen('qsub -W depend=afterok:'+jobia[0:7]+' -v EXP="EAS44RP85'+alphabets[count]+ \
                 '" WRF_EAS44RP85'+alphabets[count]+'/RUN_WRF_REAL.sh').read()
- # if jobid above is completed successfully, execute next line to run wrf
+# if jobid above is completed successfully, execute next line to run wrf
  jobie=os.popen('qsub -W depend=afterok:'+jobid[0:7]+' -v EXP="EAS44RP85'+alphabets[count]+ \
                 '" WRF_EAS44RP85'+alphabets[count]+'/RUN_WRF_EXE.sh').read()
  count=count+1
