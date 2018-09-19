@@ -1,3 +1,4 @@
+# To run: python step3_runrealwrf_rp85.py
 import os
 
 yearstart=range(2075,2090,5)
