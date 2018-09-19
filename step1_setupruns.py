@@ -5,7 +5,7 @@
 yearstart=range(2065,2090,5)
 
 alphabets=map(chr,range(65, 91))
-
+#count=0 is A, count=1 is B...
 count=13
 
 for y in yearstart:
