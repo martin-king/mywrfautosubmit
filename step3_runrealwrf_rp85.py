@@ -3,7 +3,6 @@ import os
 yearstart=range(2075,2090,5)
 
 alphabets=map(chr,range(65, 91))
-
 #count=0 is A, count=1 is B...
 count=15
 
@@ -28,7 +27,11 @@ for y in yearstart:
 # os.popen('sed /"end_year"/s/"1954"/"'+str(y+4)+'"/ WRF_EAS44RP85'+alphabets[count]+'/namelist.input > rub.input')
 # os.popen('mv rub.input WRF_EAS44RP85'+alphabets[count]+'/namelist.input')
 
- jobia=os.popen('qsub -W depend=afterok:'+jobie[0:7]+' -v ALPHA="'+alphabets[count]+'",YEAR="'+str(y)+'",ALPHAM="'+alphabets[count-1]+'",YEARM="'+str(y-1)+'",YEARP4="'+str(y+4)+'"'+' ./RUN_PYTHON_RP85.sh').read()
- jobid=os.popen('qsub -W depend=afterok:'+jobia[0:7]+' -v EXP="EAS44RP85'+alphabets[count]+'" WRF_EAS44RP85'+alphabets[count]+'/RUN_WRF_REAL.sh').read()
- jobie=os.popen('qsub -W depend=afterok:'+jobid[0:7]+' -v EXP="EAS44RP85'+alphabets[count]+'" WRF_EAS44RP85'+alphabets[count]+'/RUN_WRF_EXE.sh').read()
+ jobia=os.popen('qsub -W depend=afterok:'+jobie[0:7]+' -v ALPHA="'+alphabets[count]+'",YEAR="'+str(y)+ \
+                '",ALPHAM="'+alphabets[count-1]+'",YEARM="'+str(y-1)+'",YEARP4="'+str(y+4)+'"'+ \
+                ' ./RUN_PYTHON_RP85.sh').read()
+ jobid=os.popen('qsub -W depend=afterok:'+jobia[0:7]+' -v EXP="EAS44RP85'+alphabets[count]+ \
+                '" WRF_EAS44RP85'+alphabets[count]+'/RUN_WRF_REAL.sh').read()
+ jobie=os.popen('qsub -W depend=afterok:'+jobid[0:7]+' -v EXP="EAS44RP85'+alphabets[count]+ \
+                '" WRF_EAS44RP85'+alphabets[count]+'/RUN_WRF_EXE.sh').read()
  count=count+1
