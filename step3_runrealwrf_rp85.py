@@ -7,7 +7,8 @@ alphabets=map(chr,range(65, 91))
 #count=0 is A, count=1 is B...
 count=15
 
-# first jobie could be a completed or still running metgrid
+# first jobie could be a completed or still running wrf 
+# I normally submit the first ever job in a chain by hand, so I have a jobie from it
 jobie='1028017'
 
 for y in yearstart:
